@@ -16,7 +16,7 @@ namespace Vang_de_Volger
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Level());
+            Application.Run(new GameWindow());
         }
     }
 }
