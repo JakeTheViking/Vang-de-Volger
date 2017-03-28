@@ -40,23 +40,64 @@
     <packageHasNamedElement>
       <class
         Id="232267c2-95ca-4f3e-84a7-17d270ea8a1a"
-        name="GameWindow :: Form"
+        name="GameWindow : Form"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
         <suppliersInternal>
           <dependency
-            Id="212e8a07-0b67-4eb0-9439-b737f131d6a4">
+            Id="c0c85517-1424-40ec-842a-f9761a1fe89e">
             <classMoniker
-              Id="783abf16-d1f2-4f9e-9cb7-d053c54388f4"
-              LastKnownName="Program"
+              Id="b09c5be9-8616-4773-90de-7af5d936cc17"
+              LastKnownName="Tiles"
               LastKnownLocation="ModelingProject1.uml" />
           </dependency>
         </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="4224d596-b7ac-48d3-98aa-b32a0436970a"
+            isDerived="false"
+            sourceEndRoleName="GameWindow :: Form"
+            targetEndRoleName="Level"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="5c2ed9ea-0548-4a8c-9f8c-7f40e9944a13"
+              LastKnownName="Level"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="89480fd3-1968-49d8-89ca-c1e8a0766f27"
+                  name="GameWindow :: Form"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="58cfa3e8-9cce-4089-b4f3-30a132cf4ed3"
+                  name="Level"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
         <ownedAttributesInternal>
           <property
             Id="ed216581-9b15-4818-a475-8f99717a229a"
-            name="PauseButton"
+            name="size"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -68,14 +109,14 @@
             isComposite="false">
             <type_NamedElement>
               <undefinedTypeMoniker
-                Id="86a0a533-9d34-49b3-86fd-74533b9c0d84"
-                LastKnownName="Button"
+                Id="3473b9a7-2be6-45cf-ab17-b99e95c05399"
+                LastKnownName="ToolStripMenuItem"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
           <property
             Id="6a6ce7c5-6403-4b7f-8491-6de3c1fa48e1"
-            name="StartButton"
+            name="pause"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -87,14 +128,14 @@
             isComposite="false">
             <type_NamedElement>
               <undefinedTypeMoniker
-                Id="86a0a533-9d34-49b3-86fd-74533b9c0d84"
-                LastKnownName="Button"
+                Id="3473b9a7-2be6-45cf-ab17-b99e95c05399"
+                LastKnownName="ToolStripMenuItem"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
           <property
             Id="27b3f82a-d9f1-4272-8431-86644f3fea42"
-            name="RestartButton"
+            name="restart"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -106,33 +147,14 @@
             isComposite="false">
             <type_NamedElement>
               <undefinedTypeMoniker
-                Id="86a0a533-9d34-49b3-86fd-74533b9c0d84"
-                LastKnownName="Button"
+                Id="3473b9a7-2be6-45cf-ab17-b99e95c05399"
+                LastKnownName="ToolStripMenuItem"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
           <property
             Id="1bb26d37-3d2d-4158-95cb-e1b7f99baeb2"
             name="currentDirection"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <enumerationMoniker
-                Id="66b02c9e-c926-47d0-bb1d-2349774a4ce8"
-                LastKnownName="Direction"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="36631f74-5623-4bcf-90b8-8bb474d20a1a"
-            name="lastInput"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -169,9 +191,45 @@
             </type_NamedElement>
           </property>
           <property
-            Id="f0090a8d-3aeb-4577-95ac-0b381a58f253"
-            name="tickCounter"
+            Id="29b9090c-9a95-4aa5-8fba-038a09a9aeea"
+            name="menu"
             visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="925f7b1a-702c-4881-984f-d590ab37e2f3"
+                LastKnownName="MenuStrip"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="80cfca80-3a72-4044-a4de-0cf1567aa40a"
+            name="GAMEWINDOW_HEIGHT"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="c107e636-64ec-4810-9a36-6034b71bd46f"
+                LastKnownName="Int"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="51766d41-1f55-460e-b157-38b0907901fa"
+            name="GAMEWINDOW_WIDTH"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -189,14 +247,6 @@
           </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
-          <operation
-            Id="3bc0817b-0060-47a2-b7ce-1b5d86239542"
-            name="Dispose"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
           <operation
             Id="06dcc02f-a287-41cf-833d-f258f3de8e20"
             name="Pause"
@@ -204,7 +254,23 @@
             isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
-            isQuery="false" />
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="689c00b5-2dc9-4f0c-9650-2aa5fa480207"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="159f42e4-23e5-490a-8e37-511a224e40cb"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
           <operation
             Id="4ef1774f-d1d9-4c38-9936-0b27e7f0086f"
             name="Start"
@@ -212,7 +278,23 @@
             isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
-            isQuery="false" />
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="2bca1d59-d662-470b-9b0b-27ee486ed4e5"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="159f42e4-23e5-490a-8e37-511a224e40cb"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
           <operation
             Id="03e63807-ff6d-41fc-8132-f8a794a0f932"
             name="Restart"
@@ -220,160 +302,54 @@
             isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
-            isQuery="false" />
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f7e2374e-23c1-44d2-a05f-8e664f5786a5"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="159f42e4-23e5-490a-8e37-511a224e40cb"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
           <operation
-            Id="79b47496-5fb7-4096-89b6-0ba441b74d78"
-            name="MoveDirection"
+            Id="0eabcb2e-5aef-4f2d-a544-c52099a18682"
+            name="GameWindow_KeyUp"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
-            isQuery="false" />
-          <operation
-            Id="630d70ee-b3f6-452c-98cd-c642210c3dbb"
-            name="CanMoveDirection"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
-          <operation
-            Id="5ebaab9a-bcec-48c4-81fa-6ec578d8ad4a"
-            name="NoMove"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
-        </ownedOperationsInternal>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="dd6b8005-4e48-46f2-b95c-86e8953736ba"
-        name="Game"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <generalsInternal>
-          <generalization
-            Id="31deacac-e143-4a5f-8302-3d2a53d4c6f4"
-            isSubstitutable="false">
-            <classMoniker
-              Id="232267c2-95ca-4f3e-84a7-17d270ea8a1a"
-              LastKnownName="GameWindow :: Form"
-              LastKnownLocation="ModelingProject1.uml" />
-          </generalization>
-        </generalsInternal>
-        <ownedAttributesInternal>
-          <property
-            Id="5c9a4207-cd86-4d02-9dee-6f68ccc9ae60"
-            name="LevelHeight"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="c107e636-64ec-4810-9a36-6034b71bd46f"
-                LastKnownName="Int"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="d9124ddd-94fa-4741-bc4d-476738a43f93"
-            name="LevelWidth"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="c107e636-64ec-4810-9a36-6034b71bd46f"
-                LastKnownName="Int"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="cab7f97a-44b0-43d0-9356-a9fbbe23f948"
-            name="GameHeight"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="c107e636-64ec-4810-9a36-6034b71bd46f"
-                LastKnownName="Int"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="63e99b4f-076c-47ba-a719-41d512fc1f71"
-            name="GameWidth"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="c107e636-64ec-4810-9a36-6034b71bd46f"
-                LastKnownName="Int"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="6ba2d808-0cbb-46da-a0fe-0234f40a2117"
-            name="SpriteAsset"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="c107e636-64ec-4810-9a36-6034b71bd46f"
-                LastKnownName="Int"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-        </ownedAttributesInternal>
-        <ownedOperationsInternal>
-          <operation
-            Id="5b4852d6-7fdc-4adb-b9ec-04849969dfa6"
-            name="LoadLevel"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
-          <operation
-            Id="ac578b23-cc94-48f9-9fca-cd1196cc00da"
-            name="RenderLevel"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3923a29e-2a9b-4924-a499-78129db2309a"
+                  name="currentDirection"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c0ec9603-33c7-4e66-83b5-76f9074c8573"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="159f42e4-23e5-490a-8e37-511a224e40cb"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -381,14 +357,13 @@
       <class
         Id="bce0f73d-642d-4c9a-8436-f03c1c5c7b17"
         name="Entity"
-        isAbstract="false"
+        isAbstract="true"
         isLeaf="false"
         isActiveClass="false">
         <ownedAttributesInternal>
           <property
-            Id="8e7e0611-3504-42e1-be78-2dfe2aaaaa36"
-            name="PosX"
-            visibility="Private"
+            Id="d8382b5b-8305-4892-9007-37f52854ea2c"
+            name="ASSET_SIZE"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -405,27 +380,8 @@
             </type_NamedElement>
           </property>
           <property
-            Id="cb07ade2-af38-4c59-aea0-62a77ae5cad3"
-            name="PosY"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="c107e636-64ec-4810-9a36-6034b71bd46f"
-                LastKnownName="Int"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="ca233be3-1d19-49e1-af8b-51af00c0832b"
-            name="Texture"
+            Id="bd6af0af-f9bd-4b4b-a644-a161aa861247"
+            name="resized"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -442,6 +398,63 @@
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="03539200-8865-407f-bfb6-436d4825db4d"
+            name="thisTile"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <classMoniker
+                Id="b09c5be9-8616-4773-90de-7af5d936cc17"
+                LastKnownName="Tiles"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="fd43a1ec-9181-4ccf-bc55-168a18d7b29a"
+            name="frame"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="a397139c-7da5-4700-82e4-04ffa676cd0f"
+                LastKnownName="Bitmap"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="ff3dbc2a-03fb-4021-bd58-bb2ed9cd3a80"
+            name="frameGraphics"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="0158495d-905b-41a3-9422-aa89f71351a7"
+                LastKnownName="Graphics"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
@@ -451,15 +464,147 @@
             isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
-            isQuery="false" />
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="1851d160-6863-4705-a444-124569f1db7e"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="159f42e4-23e5-490a-8e37-511a224e40cb"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="032ab7d1-f878-4417-b559-efe20b6ea0eb"
+                  name="currentDirection"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="66b02c9e-c926-47d0-bb1d-2349774a4ce8"
+                      LastKnownName="Direction"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
           <operation
             Id="aea6df84-6f25-4716-acbf-f526e32c2409"
             name="GetTexture"
             isLeaf="false"
             isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="38731b92-c8d3-49ed-990f-08b6a1c8a905"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="a397139c-7da5-4700-82e4-04ffa676cd0f"
+                      LastKnownName="Bitmap"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="a76c3b21-a6fe-4035-9889-fc0f5dace952"
+            name="Solid"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="bcde20d8-6afe-4d5c-93fe-16bded000a25"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5c8d5444-9213-423e-a3d3-686aae3e8e0d"
+                      LastKnownName="bool"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="384d217f-cc02-40a0-8818-95e484745d9d"
+            name="GetDrawer"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="27d5f3a4-eef1-4920-9a0a-a2d42d511cb0"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="0158495d-905b-41a3-9422-aa89f71351a7"
+                      LastKnownName="Graphics"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="e7e3e8f3-184c-4675-88df-7a7043000d64"
+            name="Draw"
+            isLeaf="false"
+            isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
-            isQuery="false" />
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="743548f0-464c-401b-b1a4-4699f009eb66"
+                  name="_location"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="ba499a25-250f-405f-8a0b-04a75b53cfa4"
+                      LastKnownName="Point"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="1d040ef2-3100-40f9-9ab8-2ede3ab331a4"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="159f42e4-23e5-490a-8e37-511a224e40cb"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -470,6 +615,16 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="597d2109-374c-431d-9b9a-221e3dc4d632"
+            isSubstitutable="false">
+            <classMoniker
+              Id="bce0f73d-642d-4c9a-8436-f03c1c5c7b17"
+              LastKnownName="Entity"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+        </generalsInternal>
         <ownedAttributesInternal>
           <property
             Id="dad1a5c8-70b7-4d84-b222-c2c9300b4b8d"
@@ -491,8 +646,8 @@
             </type_NamedElement>
           </property>
           <property
-            Id="3a6004d3-6693-4ad0-94af-a60580073628"
-            name="Moveable"
+            Id="d86776e7-f530-435a-b2db-61963e57410d"
+            name="IsTileSolid"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -504,8 +659,8 @@
             isComposite="false">
             <type_NamedElement>
               <undefinedTypeMoniker
-                Id="0b5cad9d-1540-40fc-8f7a-afb6222c81dd"
-                LastKnownName="Bool"
+                Id="5c8d5444-9213-423e-a3d3-686aae3e8e0d"
+                LastKnownName="bool"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -550,8 +705,8 @@
             </type_NamedElement>
           </property>
           <property
-            Id="2d7def18-2ae3-4e92-bf40-a53e995bee69"
-            name="Moveable"
+            Id="dc1b555b-3c90-41fb-aaf8-9d00a33927fc"
+            name="IsTileSolid"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -563,8 +718,8 @@
             isComposite="false">
             <type_NamedElement>
               <undefinedTypeMoniker
-                Id="0b5cad9d-1540-40fc-8f7a-afb6222c81dd"
-                LastKnownName="Bool"
+                Id="5c8d5444-9213-423e-a3d3-686aae3e8e0d"
+                LastKnownName="bool"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -609,8 +764,8 @@
             </type_NamedElement>
           </property>
           <property
-            Id="11edcf44-043e-484c-9161-28a732425ec1"
-            name="Moveable"
+            Id="012f13c1-13f3-4b0a-a32e-350507a71cb0"
+            name="IsTileSolid"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -622,8 +777,8 @@
             isComposite="false">
             <type_NamedElement>
               <undefinedTypeMoniker
-                Id="0b5cad9d-1540-40fc-8f7a-afb6222c81dd"
-                LastKnownName="Bool"
+                Id="5c8d5444-9213-423e-a3d3-686aae3e8e0d"
+                LastKnownName="bool"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -709,8 +864,8 @@
             </type_NamedElement>
           </property>
           <property
-            Id="72a1b1e8-87fe-49e5-8236-ed3d71083fd8"
-            name="Moveable"
+            Id="bff3caec-9e25-43e7-bd93-3bec05822ded"
+            name="IsTileSolid"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -722,8 +877,8 @@
             isComposite="false">
             <type_NamedElement>
               <undefinedTypeMoniker
-                Id="0b5cad9d-1540-40fc-8f7a-afb6222c81dd"
-                LastKnownName="Bool"
+                Id="5c8d5444-9213-423e-a3d3-686aae3e8e0d"
+                LastKnownName="bool"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -739,20 +894,20 @@
         isActiveClass="false">
         <targetEnds>
           <association
-            Id="f5fb41fd-7846-4920-8f37-ce5d807e56c8"
+            Id="f8669419-55a9-4d45-a31f-8e68b7b0bf5b"
             isDerived="false"
             sourceEndRoleName="Level"
-            targetEndRoleName="Game"
+            targetEndRoleName="Tiles"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
-              Id="dd6b8005-4e48-46f2-b95c-86e8953736ba"
-              LastKnownName="Game"
+              Id="b09c5be9-8616-4773-90de-7af5d936cc17"
+              LastKnownName="Tiles"
               LastKnownLocation="ModelingProject1.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="3419db07-3021-49e6-9400-07b422219cb4"
+                  Id="e89ac47e-21b9-4ce1-96cf-cc3762b9409f"
                   name="Level"
                   isLeaf="false"
                   isStatic="false"
@@ -765,47 +920,8 @@
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="7e5f12bc-f45c-40cc-80b1-51d086799635"
-                  name="Game"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="true" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="7a5980ff-be01-4ec7-a994-9cc06e9c953e"
-            isDerived="false"
-            sourceEndRoleName="Level"
-            targetEndRoleName="Entity"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="bce0f73d-642d-4c9a-8436-f03c1c5c7b17"
-              LastKnownName="Entity"
-              LastKnownLocation="ModelingProject1.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="ed71182a-4bd8-444b-ba00-3a8bb81a7d56"
-                  name="Level"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="Composite"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="e1ce35b8-dabc-4bb5-b93a-70c25dae3b27"
-                  name="Entity"
+                  Id="d719b306-2048-4b90-beb3-f1fe6cfafd3f"
+                  name="Tiles"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -815,13 +931,13 @@
                   isComposite="true">
                   <lowerValueInternal>
                     <literalString
-                      Id="5be6839c-3776-48ca-9c53-f508d269e464"
+                      Id="a5ab60fa-edd5-4ee7-8247-b5f695009937"
                       name="Lower"
                       value="*" />
                   </lowerValueInternal>
                   <upperValueInternal>
                     <literalString
-                      Id="919660cc-cc43-415c-9a41-626e5b13627c"
+                      Id="1bafde32-92cd-44a8-9a58-140078c0284c"
                       name="Upper"
                       value="*" />
                   </upperValueInternal>
@@ -832,27 +948,8 @@
         </targetEnds>
         <ownedAttributesInternal>
           <property
-            Id="e18fd406-c792-4ae1-919e-32a4ba1ec046"
-            name="Drawer"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="95834f87-97da-407f-9cb4-eb58f0f2a689"
-                LastKnownName="Graphic"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
             Id="af18f8ac-73c5-4123-8d13-8c2468789909"
-            name="PillarPercent"
+            name="PILLARPERCENT"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -871,7 +968,7 @@
           </property>
           <property
             Id="3835ba9c-ef72-41ff-a1c0-08fd97b2b365"
-            name="WallPercent"
+            name="WALLPERCENT"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -888,24 +985,189 @@
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="21d645f7-76f5-4e13-8c51-8a985b13b362"
+            name="LEVEL_HEIGHT"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="c107e636-64ec-4810-9a36-6034b71bd46f"
+                LastKnownName="Int"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="ec27eda4-7eb0-4d84-b3ea-0e8b10414681"
+            name="LEVEL_WIDTH"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="c107e636-64ec-4810-9a36-6034b71bd46f"
+                LastKnownName="Int"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="5766f45a-9bc1-4b12-8f47-64e6bc579577"
+            name="currentDirection"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <enumerationMoniker
+                Id="66b02c9e-c926-47d0-bb1d-2349774a4ce8"
+                LastKnownName="Direction"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="1bac2350-9e5f-4080-9b11-79dfee440fcf"
+            name="rows"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="c107e636-64ec-4810-9a36-6034b71bd46f"
+                LastKnownName="Int"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="9aaaf95a-04fb-4567-b925-6d06e7539dd4"
+            name="columns"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="c107e636-64ec-4810-9a36-6034b71bd46f"
+                LastKnownName="Int"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="cb81311f-2fcd-49ae-a022-afbb4afd8f21"
+            name="tileArray"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <lowerValueInternal>
+              <literalString
+                Id="67224a87-6d47-4a9a-b0d3-ed45a75ad3a0"
+                name="Lower"
+                value="," />
+            </lowerValueInternal>
+            <upperValueInternal>
+              <literalString
+                Id="edc83fb0-4d4c-464e-a238-845e3af78b93"
+                name="Upper"
+                value="," />
+            </upperValueInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="b09c5be9-8616-4773-90de-7af5d936cc17"
+                LastKnownName="Tiles"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="02e95eaa-b6ed-4b51-8f83-5b42d6ef4d0f"
+            name="_tiles"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <classMoniker
+                Id="b09c5be9-8616-4773-90de-7af5d936cc17"
+                LastKnownName="Tiles"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
-            Id="0fd88d30-c80c-4788-a8ac-3d7d213a1761"
-            name="LoadMap"
+            Id="5e9841af-ab97-4f54-81c7-1d6de185c96f"
+            name="Move"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
-            isQuery="false" />
-          <operation
-            Id="e466a77c-d8eb-4b19-8149-2eeacbceb445"
-            name="Render"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a9ad9295-1d5a-45a4-a7a4-3d9d58391fb8"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="159f42e4-23e5-490a-8e37-511a224e40cb"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="2199c020-d500-4aaf-abb8-86b833f43123"
+                  name="currenDirection"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="66b02c9e-c926-47d0-bb1d-2349774a4ce8"
+                      LastKnownName="Direction"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -950,6 +1212,15 @@
         name="Direction"
         isAbstract="false"
         isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="d23026bf-65bc-4efe-94b7-974fc40aa6c7">
+            <classMoniker
+              Id="232267c2-95ca-4f3e-84a7-17d270ea8a1a"
+              LastKnownName="GameWindow : Form"
+              LastKnownLocation="ModelingProject1.uml" />
+          </dependency>
+        </suppliersInternal>
         <ownedLiterals>
           <enumerationLiteral
             Id="bee41cb9-b187-4801-92d4-237c9918be16"
@@ -970,31 +1241,6 @@
       </enumeration>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <enumeration
-        Id="ffca8c9c-9e9f-461f-b47d-73bce89e3718"
-        name="TextureID"
-        isAbstract="false"
-        isLeaf="false">
-        <ownedLiterals>
-          <enumerationLiteral
-            Id="89d73100-9bb8-4f03-8ac8-bf9a2e28cf17"
-            name="Grass" />
-          <enumerationLiteral
-            Id="b73213fe-7656-48b0-8b4c-943230327119"
-            name="Wall" />
-          <enumerationLiteral
-            Id="08a72364-de62-496f-9167-09e2e93ec859"
-            name="Player" />
-          <enumerationLiteral
-            Id="2cef7439-a4a5-4516-a333-d4114c1e1f53"
-            name="Enemy" />
-          <enumerationLiteral
-            Id="b883885d-9349-46ed-b0e6-0b7d7426e6c4"
-            name="Pillar" />
-        </ownedLiterals>
-      </enumeration>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <undefinedType
         Id="86a0a533-9d34-49b3-86fd-74533b9c0d84"
         name="Button" />
@@ -1006,86 +1252,351 @@
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
-        Id="48377af1-c83a-43c0-9b45-821b2454838e"
-        name="Grass"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <generalsInternal>
-          <generalization
-            Id="4166f8c0-cd40-43cf-8f28-2a391358499c"
-            isSubstitutable="false">
-            <classMoniker
-              Id="bce0f73d-642d-4c9a-8436-f03c1c5c7b17"
-              LastKnownName="Entity"
-              LastKnownLocation="ModelingProject1.uml" />
-          </generalization>
-        </generalsInternal>
-        <ownedAttributesInternal>
-          <property
-            Id="9ef15c41-0b6a-4049-9b5c-f3d0354cc02f"
-            name="Texture"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="a397139c-7da5-4700-82e4-04ffa676cd0f"
-                LastKnownName="Bitmap"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="fd308e06-146d-4f4f-be1a-202f07ea510e"
-            name="Moveable"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="0b5cad9d-1540-40fc-8f7a-afb6222c81dd"
-                LastKnownName="Bool"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-        </ownedAttributesInternal>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
         Id="614b07a8-4b27-4128-ae54-29d55ac86c1d"
         name="AI"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false">
-        <ownedOperationsInternal>
-          <operation
-            Id="830e2dbd-adfa-4eb5-b83d-7ee5c7f0230b"
-            name="Pad"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
-        </ownedOperationsInternal>
-      </class>
+        isActiveClass="false" />
     </packageHasNamedElement>
     <packageHasNamedElement>
       <undefinedType
         Id="0b5cad9d-1540-40fc-8f7a-afb6222c81dd"
         name="Bool" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="b09c5be9-8616-4773-90de-7af5d936cc17"
+        name="Tiles"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="74253f73-d58b-4158-90c1-6af1d9eaa5da"
+            isDerived="false"
+            sourceEndRoleName="Tiles"
+            targetEndRoleName="Entity"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="bce0f73d-642d-4c9a-8436-f03c1c5c7b17"
+              LastKnownName="Entity"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="46f12b1c-9b33-46f0-8efa-44dfef11c977"
+                  name="Tiles"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7653165c-0eff-4550-a778-1c48bacc5ab2"
+                  name="Entity"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="28db3447-de1f-4160-bab8-57ee04a9ecb6"
+            name="ContainsEntity"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <classMoniker
+                Id="bce0f73d-642d-4c9a-8436-f03c1c5c7b17"
+                LastKnownName="Entity"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="f7a7afcd-517a-4c5a-874e-046821b3a0d6"
+            name="locationX"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="c107e636-64ec-4810-9a36-6034b71bd46f"
+                LastKnownName="Int"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="8a1c8d65-d1e4-41c9-b81a-d3a0b0f25fcf"
+            name="locationY"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="c107e636-64ec-4810-9a36-6034b71bd46f"
+                LastKnownName="Int"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="ad75cc1f-e600-462d-a6e7-d95e6624dda1"
+            name="neighbor"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="4fa0c7b0-d853-4a63-a72e-03f6248d2df4"
+                LastKnownName="Dictionary&lt;Direction, Tiles&gt;"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="72a09133-be8b-4c0d-8913-6b600095d6f0"
+            name="SaveNeighbor"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="651ce4a1-ba02-4dc4-8c8a-eb8ec9dd44bf"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="159f42e4-23e5-490a-8e37-511a224e40cb"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="aefd8b56-4dc7-4a28-9bde-74c4a26913cb"
+                  name="direction"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="66b02c9e-c926-47d0-bb1d-2349774a4ce8"
+                      LastKnownName="Direction"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="fc93f088-40c0-4a7f-8f58-c1de1448e1fd"
+                  name="tile"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="b09c5be9-8616-4773-90de-7af5d936cc17"
+                      LastKnownName="Tiles"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="bdc81dd3-4d3f-4907-a812-92d518604aed"
+                  name="greeting"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5c8d5444-9213-423e-a3d3-686aae3e8e0d"
+                      LastKnownName="bool"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="ef19f88f-d31a-45c9-b138-c7fac77f1c85"
+            name="LocationInLevel"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="93b0a8c9-d7fb-4e37-983c-b42abb046c9b"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="ba499a25-250f-405f-8a0b-04a75b53cfa4"
+                      LastKnownName="Point"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="e06c33ba-e676-4b9d-bcc2-0ea36ddba340"
+            name="SaveEntity"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4ab1f738-b355-4e19-86da-e829a96f4b90"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="159f42e4-23e5-490a-8e37-511a224e40cb"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="21038f55-4cc9-4665-adf4-fc6dcb0d2ce6"
+                  name="_entity"
+                  direction="In"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="bce0f73d-642d-4c9a-8436-f03c1c5c7b17"
+                      LastKnownName="Entity"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="848e2daf-2ac7-45ce-be6d-f960959af451"
+            name="GetEntity"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="7c9fdb1e-b228-4227-a054-e4055e32a641"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="bce0f73d-642d-4c9a-8436-f03c1c5c7b17"
+                      LastKnownName="Entity"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="3a02b83d-2f61-43bd-a36f-f73713b33f89"
+        name="Dictionary" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="159f42e4-23e5-490a-8e37-511a224e40cb"
+        name="void" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="4fa0c7b0-d853-4a63-a72e-03f6248d2df4"
+        name="Dictionary&lt;Direction, Tiles&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="ba499a25-250f-405f-8a0b-04a75b53cfa4"
+        name="Point" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="5c8d5444-9213-423e-a3d3-686aae3e8e0d"
+        name="bool" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="0158495d-905b-41a3-9422-aa89f71351a7"
+        name="Graphics" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="925f7b1a-702c-4881-984f-d590ab37e2f3"
+        name="MenuStrip" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="3473b9a7-2be6-45cf-ab17-b99e95c05399"
+        name="ToolStripMenuItem" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="21c1e83b-1b63-4347-bf10-d815721ad776"
+        name="[,]Tiles" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="0b897de5-f0a5-41aa-b36c-4ba1527cd4c1"
+        name="Class1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

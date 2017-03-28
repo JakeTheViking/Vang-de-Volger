@@ -10,19 +10,33 @@ namespace Vang_de_Volger.Classes
     class Enemy : Entity
     {
         private Bitmap texture = Vang_de_Volger.Properties.Resources.Enemy;
-        private int xPos { get; set; }
-        private int yPos { get; set; }
-
-        public Enemy(int i, int j)
+        private bool IsTileSolid;
+        private Graphics drawer;
+        public Enemy(Graphics g, Point point)
         {
-            xPos = i;
-            yPos = j;
+            drawer = g;
+            IsTileSolid = true;
+            Draw(point);
         }
         public override Bitmap GetTexture
         {
             get
             {
                 return texture;
+            }
+        }
+        public override bool Solid
+        {
+            get
+            {
+                return IsTileSolid;
+            }
+        }
+        public override Graphics GetDrawer
+        {
+            get
+            {
+                return drawer;
             }
         }
     }

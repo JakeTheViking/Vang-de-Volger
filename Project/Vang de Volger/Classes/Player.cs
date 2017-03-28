@@ -11,12 +11,15 @@ namespace Vang_de_Volger.Classes
     class Player : Entity
     {
         private Bitmap texture = Vang_de_Volger.Properties.Resources.Player;
-        public int xPos { get; set; }
-        public int yPos { get; set; }
-        public Player(int i, int j)
+        private bool IsTileSolid;
+        private Graphics drawer;
+        public Player(Graphics g, Point point)
         {
-            xPos = i;
-            yPos = j;
+            drawer = g;
+            IsTileSolid = true;
+            //Point _point = new Point(32, 64);
+            //Move(currentDirection);
+            Draw(point);
         }
         /// <summary>
         /// Override of GetTexture method
@@ -29,5 +32,21 @@ namespace Vang_de_Volger.Classes
                 return texture;
             }
         }
+        public override bool Solid
+        {
+            get
+            {
+                return IsTileSolid;
+            }
+        }
+        public override Graphics GetDrawer
+        {
+            get
+            {
+                return drawer;
+            }
+        }
+
+
     }
 }

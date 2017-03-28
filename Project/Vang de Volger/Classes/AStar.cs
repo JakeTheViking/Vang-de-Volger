@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Vang_de_Volger.Classes
 {
-    public enum Direction { None, North, West, South = ~North, East = ~West};
+    class AStar
+    {
+    }
 }

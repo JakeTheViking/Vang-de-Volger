@@ -10,90 +10,82 @@ namespace Vang_de_Volger.Classes
 {
     class Level
     {
-        public static TextureID[,] blocks = new TextureID[Game.LEVEL_WIDTH, Game.LEVEL_HEIGHT];
-        
-        private Graphics drawer;
-        private int wallPercentage = 5;
-        private int pillarPercentage = 20;
+        public const int LEVEL_WIDTH = 10;
+        public const int LEVEL_HEIGHT = 10;
 
-        public static TextureID[,] Blocks
+        private Direction currentDirection;
+
+        private Tiles _tiles;
+        private Tiles[,] arrTiles;
+
+        private int rows;
+        private int columns;
+
+        private const int wallPercentage = 5;
+        private const int pillarPercentage = 20;
+
+        public Level(Graphics g, int r, int c)
         {
-            get { return blocks; }
-            set { blocks = value; }
-        }
-        public Level(Graphics g)
-        {
-            drawer = g;
-        }
-        public void LoadMap()
-        {
+            rows = r;
+            columns = c;
+            arrTiles = new Tiles[rows, columns];
+
             Random rand = new Random();
-            for (int x = 0; x < blocks.GetUpperBound(0); x++)
+
+            for (int x = 0; x < rows; x++)
             {
-                for (int y = 0; y < blocks.GetUpperBound(1); y++)
+                for (int y = 0; y < columns; y++)
                 {
-                    blocks[x, y] = TextureID.Grass;
-                    if (rand.Next(1, 100) < pillarPercentage)
+                    _tiles = new Tiles(x, y);
+                    arrTiles[x, y] = _tiles;
+                    if (y > 0)
                     {
-                        blocks[x, y] = TextureID.Pillar;
+                        _tiles.SaveNeighbour(Direction.North, arrTiles[x, (y - 1)]);
                     }
-                    if (x == 0 || x == 11 || y == 0 || y == 12)
+                    if (x > 0)
                     {
-                        blocks[x, y] = TextureID.Wall;
+                        _tiles.SaveNeighbour(Direction.West, arrTiles[(x - 1), y]);
                     }
-                    if (rand.Next(1, 100) < wallPercentage && x != 1 && x != 10 && y != 1 && y != 11)
+                    if (rand.Next(1, 101) < pillarPercentage)
                     {
-                        blocks[x, y] = TextureID.Wall;
+                        arrTiles[x, y].SaveEntity(new Pillar(g, arrTiles[x, y].LocationInLevel()));
+                    }
+                    if (rand.Next(1, 101) < wallPercentage)
+                    {
+                        arrTiles[x, y].SaveEntity(new Wall(g, arrTiles[x, y].LocationInLevel()));
+                    }
+                    if (x == 0 || x == rows - 1 || y == 0 || y == columns - 1)
+                    {
+                        arrTiles[x, y].SaveEntity(new Wall(g, arrTiles[x, y].LocationInLevel()));
                     }
                     if (x == 1 && y == 1)
                     {
-                        blocks[x, y] = TextureID.Player;
+                        arrTiles[x, y].SaveEntity(new Player(g, arrTiles[x, y].LocationInLevel()));
                     }
-                    if (x == 10 && y == 11)
+                    if (x == rows - 2 && y == columns - 2)
                     {
-                        blocks[x, y] = TextureID.Enemy;
+                        arrTiles[rows - 2, columns - 2].SaveEntity(new Enemy(g, arrTiles[x, y].LocationInLevel()));
                     }
                 }
             }
         }
-        public void Render()
+        public void DrawSelf()
         {
-            Bitmap frame = new Bitmap(Game.GAMEWINDOW_WIDTH, Game.GAMEWINDOW_HEIGHT);
-            Graphics frameGraphics = Graphics.FromImage(frame);
-
-            TextureID[,] textures = Blocks;
-            // Background 
-            for (int i = 0; i < blocks.GetUpperBound(0); i++)
+            for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < blocks.GetUpperBound(1); j++)
+                for (int j = 0; j < columns; j++)
                 {
-                    switch (textures[i, j])
+                    if (arrTiles[i, j].GetEntity() == null)
                     {
-                        case TextureID.Grass:
-                            Entity _grass = new Grass();
-                            _grass.Draw(frameGraphics, i, j);
-                            break;
-                        case TextureID.Wall:
-                            Entity _wall = new Wall();
-                            _wall.Draw(frameGraphics, i, j);
-                            break;
-                        case TextureID.Player:
-                            Entity _player = new Player(i, j);
-                            _player.Draw(frameGraphics, i, j);
-                            break;
-                        case TextureID.Enemy:
-                            Entity _enemy = new Enemy(i, j);
-                            _enemy.Draw(frameGraphics, i, j);
-                            break;
-                        case TextureID.Pillar:
-                            Entity _pillar = new Pillar();
-                            _pillar.Draw(frameGraphics, i, j);
-                            break;
+                        continue;
+                    }
+                    else
+                    {
+                        arrTiles[i, j].GetEntity().Draw(arrTiles[i, j].LocationInLevel());
                     }
                 }
+
             }
-            //Draw frame on canvas
-            drawer.DrawImage(frame, 0, 0);
         }
     }
 }
