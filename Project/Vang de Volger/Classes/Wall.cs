@@ -9,14 +9,13 @@ namespace Vang_de_Volger.Classes
 {
     class Wall : Entity
     {
-        private Bitmap texture = Vang_de_Volger.Properties.Resources.Wall;
+        private Bitmap texture = Vang_de_Volger.Properties.Resources.Wall32x32;
         private bool IsTileSolid;
         private Graphics framegraphics;
-        public Wall(Graphics frame, Point point)
+        public Wall(Graphics frame, Point point) : base(point)
         {
             framegraphics = frame;
             IsTileSolid = false;
-            Draw(point);
         }
         public override Bitmap GetTexture
         {

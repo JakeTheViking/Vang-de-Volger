@@ -141,10 +141,10 @@ namespace Vang_de_Volger.Classes
             // 
             // DrawingArea
             // 
-            this.DrawingArea.BackgroundImage = global::Vang_de_Volger.Properties.Resources.Background;
+            this.DrawingArea.BackgroundImage = global::Vang_de_Volger.Properties.Resources.Background32x32;
             this.DrawingArea.Location = new System.Drawing.Point(0, 28);
             this.DrawingArea.Name = "DrawingArea";
-            this.DrawingArea.Size = new System.Drawing.Size(726, 472);
+            this.DrawingArea.Size = new System.Drawing.Size(2500, 800);
             this.DrawingArea.TabIndex = 0;
             // 
             // GameWindow
@@ -164,8 +164,6 @@ namespace Vang_de_Volger.Classes
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Vang de Volger";
             this.Shown += new System.EventHandler(this.GameWindow_Shown);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameWindow_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GameWindow_KeyUp);
             this.Menu.ResumeLayout(false);
             this.Menu.PerformLayout();
             this.ResumeLayout(false);

@@ -64,7 +64,7 @@
     <Compile Include="Classes\Player.cs" />
     <Compile Include="Classes\Program.cs" />
     <Compile Include="Classes\TextureID.cs" />
-    <Compile Include="Classes\Tiles.cs" />
+    <Compile Include="Classes\Tile.cs" />
     <Compile Include="Classes\Wall.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Classes\GameWindow.resx">
@@ -123,6 +123,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wall32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Background32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Enemy32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pillar32x32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -11,21 +11,20 @@ namespace Vang_de_Volger.Classes
     abstract class Entity
     {
         public const int ASSET_SIZE = 32;
-        protected Direction currentDirection;
         private Bitmap resized;
-        private Tiles thisTile;
+        private Tile thisTile;
 
         private Bitmap frame;
         private Graphics frameGraphics;
 
-        public Entity()
+        public Entity(Point point)
         {
             frame = new Bitmap(800, 800);
             frameGraphics = Graphics.FromImage(frame);
 
             resized = new Bitmap(GetTexture, new Size(ASSET_SIZE, ASSET_SIZE));
-            //thisTile = new
 
+            thisTile = new Tile(point.X, point.Y);
         }
         public abstract Bitmap GetTexture
         {
@@ -51,18 +50,19 @@ namespace Vang_de_Volger.Classes
             GetDrawer.DrawImage(frame, 0, 0);
         }
 
-        //public bool Move(Direction direction)
-        //{
-        //    Tiles neighborTile = thisTile.
-        //    if ()
-        //     is er een vakje = return false
-        //     zit er iets in het vakje = return true
-        //    buurvakje(this)
-        //    huidige(null) save entity
-        //    this tile = neighbur
-        //    true
-        //    recursive doos
-        //}
+        public bool Move(Direction direction)
+        {
+            Tile neighborTile = thisTile.GetNeighbour();
+            return false;
+            //if ()
+            // is er een vakje = return false
+            // zit er iets in het vakje = return true
+            //buurvakje(this)
+            //huidige(null) save entity
+            //this tile = neighbur
+            //true
+            //recursive doos
+        }
 
         //public void Move(Direction direction)
         //{

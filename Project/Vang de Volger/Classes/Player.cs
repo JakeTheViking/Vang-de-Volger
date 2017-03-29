@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,16 +11,18 @@ namespace Vang_de_Volger.Classes
 {
     class Player : Entity
     {
-        private Bitmap texture = Vang_de_Volger.Properties.Resources.Player;
+        private Bitmap texture = Vang_de_Volger.Properties.Resources.Player32x32;
         private bool IsTileSolid;
         private Graphics drawer;
-        public Player(Graphics g, Point point)
+        private Direction currentDirection;
+
+        public Player(Graphics g, Control control, Point point) : base (point)
         {
             drawer = g;
             IsTileSolid = true;
-            //Point _point = new Point(32, 64);
-            //Move(currentDirection);
-            Draw(point);
+            Move(currentDirection);
+            control.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UpdateOn_KeyUp);
+            control.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Direction_KeyDown);
         }
         /// <summary>
         /// Override of GetTexture method
@@ -46,7 +49,36 @@ namespace Vang_de_Volger.Classes
                 return drawer;
             }
         }
+        private void UpdateOn_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case (Keys.W):
+                case (Keys.A):
+                case (Keys.S):
+                case (Keys.D):
+                    MessageBox.Show("Rerender");
+                    break;
+            }
+        }
 
-
+        public void Direction_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case (Keys.W):
+                    currentDirection = Classes.Direction.North;
+                    break;
+                case (Keys.A):
+                    currentDirection = Classes.Direction.West;
+                    break;
+                case (Keys.S):
+                    currentDirection = Classes.Direction.South;
+                    break;
+                case (Keys.D):
+                    currentDirection = Classes.Direction.East;
+                    break;
+            }
+        }
     }
 }
