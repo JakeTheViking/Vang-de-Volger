@@ -45,7 +45,10 @@ namespace Vang_de_Volger.Classes
             this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.DrawingArea = new System.Windows.Forms.Panel();
+            this.PauseForm = new System.Windows.Forms.PictureBox();
             this.Menu.SuspendLayout();
+            this.DrawingArea.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PauseForm)).BeginInit();
             this.SuspendLayout();
             // 
             // Menu
@@ -77,35 +80,36 @@ namespace Vang_de_Volger.Classes
             this.MediumMenuItem,
             this.LargeMenuItem});
             this.SizeMenuItem.Name = "SizeMenuItem";
-            this.SizeMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.SizeMenuItem.Size = new System.Drawing.Size(181, 26);
             this.SizeMenuItem.Text = "Size";
             // 
             // SmallMenuItem
             // 
             this.SmallMenuItem.Name = "SmallMenuItem";
-            this.SmallMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.SmallMenuItem.Size = new System.Drawing.Size(181, 26);
             this.SmallMenuItem.Text = "Small";
             this.SmallMenuItem.Click += new System.EventHandler(this.SmallMenuItem_Click);
             // 
             // MediumMenuItem
             // 
             this.MediumMenuItem.Name = "MediumMenuItem";
-            this.MediumMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.MediumMenuItem.Size = new System.Drawing.Size(181, 26);
             this.MediumMenuItem.Text = "Medium";
             this.MediumMenuItem.Click += new System.EventHandler(this.MediumMenuItem_Click);
             // 
             // LargeMenuItem
             // 
             this.LargeMenuItem.Name = "LargeMenuItem";
-            this.LargeMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.LargeMenuItem.Size = new System.Drawing.Size(181, 26);
             this.LargeMenuItem.Text = "Large";
             this.LargeMenuItem.Click += new System.EventHandler(this.LargeMenuItem_Click);
             // 
             // ControlsMenuItem
             // 
             this.ControlsMenuItem.Name = "ControlsMenuItem";
-            this.ControlsMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.ControlsMenuItem.Size = new System.Drawing.Size(181, 26);
             this.ControlsMenuItem.Text = "Controls";
+            this.ControlsMenuItem.Click += new System.EventHandler(this.ControlsMenuItem_Click);
             // 
             // OptionsMenuItem
             // 
@@ -121,18 +125,21 @@ namespace Vang_de_Volger.Classes
             this.PauseMenuItem.Name = "PauseMenuItem";
             this.PauseMenuItem.Size = new System.Drawing.Size(130, 26);
             this.PauseMenuItem.Text = "Pause";
+            this.PauseMenuItem.Click += new System.EventHandler(this.PauseMenuItem_Click);
             // 
             // RestartMenuItem
             // 
             this.RestartMenuItem.Name = "RestartMenuItem";
             this.RestartMenuItem.Size = new System.Drawing.Size(130, 26);
             this.RestartMenuItem.Text = "Restart";
+            this.RestartMenuItem.Click += new System.EventHandler(this.RestartMenuItem_Click);
             // 
             // HelpMenuItem
             // 
             this.HelpMenuItem.Name = "HelpMenuItem";
             this.HelpMenuItem.Size = new System.Drawing.Size(53, 24);
             this.HelpMenuItem.Text = "Help";
+            this.HelpMenuItem.Click += new System.EventHandler(this.HelpMenuItem_Click);
             // 
             // gameTimer
             // 
@@ -142,10 +149,23 @@ namespace Vang_de_Volger.Classes
             // DrawingArea
             // 
             this.DrawingArea.BackgroundImage = global::Vang_de_Volger.Properties.Resources.Background32x32;
+            this.DrawingArea.Controls.Add(this.PauseForm);
             this.DrawingArea.Location = new System.Drawing.Point(0, 28);
             this.DrawingArea.Name = "DrawingArea";
-            this.DrawingArea.Size = new System.Drawing.Size(2500, 800);
+            this.DrawingArea.Size = new System.Drawing.Size(800, 800);
             this.DrawingArea.TabIndex = 0;
+            // 
+            // PauseForm
+            // 
+            this.PauseForm.BackColor = System.Drawing.Color.Transparent;
+            this.PauseForm.BackgroundImage = global::Vang_de_Volger.Properties.Resources.Pause;
+            this.PauseForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PauseForm.Location = new System.Drawing.Point(0, 0);
+            this.PauseForm.Name = "PauseForm";
+            this.PauseForm.Size = new System.Drawing.Size(64, 64);
+            this.PauseForm.TabIndex = 0;
+            this.PauseForm.TabStop = false;
+            this.PauseForm.Visible = false;
             // 
             // GameWindow
             // 
@@ -166,6 +186,8 @@ namespace Vang_de_Volger.Classes
             this.Shown += new System.EventHandler(this.GameWindow_Shown);
             this.Menu.ResumeLayout(false);
             this.Menu.PerformLayout();
+            this.DrawingArea.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PauseForm)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,7 +197,7 @@ namespace Vang_de_Volger.Classes
 
         private System.Windows.Forms.Panel DrawingArea;
         private System.Windows.Forms.Timer gameTimer;
-        private System.Windows.Forms.MenuStrip Menu;
+        private new System.Windows.Forms.MenuStrip Menu;
         private System.Windows.Forms.ToolStripMenuItem GameMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SizeMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SmallMenuItem;
@@ -186,5 +208,6 @@ namespace Vang_de_Volger.Classes
         private System.Windows.Forms.ToolStripMenuItem PauseMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RestartMenuItem;
         private System.Windows.Forms.ToolStripMenuItem HelpMenuItem;
+        private PictureBox PauseForm;
     }
 }

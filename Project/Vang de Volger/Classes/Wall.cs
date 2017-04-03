@@ -11,10 +11,8 @@ namespace Vang_de_Volger.Classes
     {
         private Bitmap texture = Vang_de_Volger.Properties.Resources.Wall32x32;
         private bool IsTileSolid;
-        private Graphics framegraphics;
-        public Wall(Graphics frame, Point point) : base(point)
+        public Wall(Tile tile, Graphics g, Point point, bool paused) : base(tile, point, g, paused)
         {
-            framegraphics = frame;
             IsTileSolid = false;
         }
         public override Bitmap GetTexture
@@ -29,13 +27,6 @@ namespace Vang_de_Volger.Classes
             get
             {
                 return IsTileSolid;
-            }
-        }
-        public override Graphics GetDrawer
-        {
-            get
-            {
-                return framegraphics;
             }
         }
     }

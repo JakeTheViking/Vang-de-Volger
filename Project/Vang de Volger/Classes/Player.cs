@@ -13,16 +13,13 @@ namespace Vang_de_Volger.Classes
     {
         private Bitmap texture = Vang_de_Volger.Properties.Resources.Player32x32;
         private bool IsTileSolid;
-        private Graphics drawer;
         private Direction currentDirection;
 
-        public Player(Graphics g, Control control, Point point) : base (point)
+        public Player(Tile tile, Graphics g, Control control, Point point, bool pause) : base (tile, point, g, pause)
         {
-            drawer = g;
             IsTileSolid = true;
-            Move(currentDirection);
-            control.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UpdateOn_KeyUp);
-            control.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Direction_KeyDown);
+            control.KeyUp += this.UpdateOn_KeyUp;
+            control.KeyDown += this.Direction_KeyDown;
         }
         /// <summary>
         /// Override of GetTexture method
@@ -42,13 +39,6 @@ namespace Vang_de_Volger.Classes
                 return IsTileSolid;
             }
         }
-        public override Graphics GetDrawer
-        {
-            get
-            {
-                return drawer;
-            }
-        }
         private void UpdateOn_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -57,7 +47,7 @@ namespace Vang_de_Volger.Classes
                 case (Keys.A):
                 case (Keys.S):
                 case (Keys.D):
-                    MessageBox.Show("Rerender");
+                    Move(currentDirection);
                     break;
             }
         }

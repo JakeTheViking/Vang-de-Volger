@@ -29,10 +29,15 @@ namespace Vang_de_Volger.Classes
                 tile.SaveNeighbour(~direction, this, false);
             }
         }
-        public Tile GetNeighbour()
+        public Tile GetNeighbour(Direction direction)
         {
-            Tile tile = new Tile(1, 1);
-            return tile;
+            if (neighbor.ContainsKey(direction))
+            {
+                return neighbor[direction];
+            } else
+            {
+                return null;
+            }
         }
 
 

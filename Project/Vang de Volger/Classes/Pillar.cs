@@ -11,10 +11,8 @@ namespace Vang_de_Volger.Classes
     {
         private Bitmap texture = Vang_de_Volger.Properties.Resources.Pillar32x32;
         private bool IsTileSolid;
-        private Graphics drawer;
-        public Pillar(Graphics g, Point point) : base(point)
+        public Pillar(Tile tile, Graphics g, Point point, bool paused) : base(tile, point, g, paused)
         {
-            drawer = g;
             IsTileSolid = true;
         }
 
@@ -30,13 +28,6 @@ namespace Vang_de_Volger.Classes
             get
             {
                 return IsTileSolid;
-            }
-        }
-        public override Graphics GetDrawer
-        {
-            get
-            {
-                return drawer;
             }
         }
     }

@@ -13,92 +13,115 @@ namespace Vang_de_Volger.Classes
     {
         public const int LEVEL_WIDTH = 10;
         public const int LEVEL_HEIGHT = 10;
+        private const int WALL_PERCENT = 5;
+        private const int PILLAR_PERCENT = 20;
 
-        private Direction currentDirection;
-
-        private Tile _tiles;
         private Tile[,] arrTiles;
 
-        private int rows;
-        private int columns;
-
         private Graphics _drawer;
-        private GraphicsState _state;
         private Control _control;
 
-        private const int wallPercentage = 5;
-        private const int pillarPercentage = 20;
+        private Player _player;
+        private Enemy _enemy;
+        private Wall _wall;
+        private Pillar _pillar;
+        private int _r, _c;
+        private bool _paused;
 
-        public Level(Graphics g, Control control, int r, int c)
+        public Level(Graphics g, Control control, bool pause)
         {
-            rows = r;
-            columns = c;
+            _r = LEVEL_WIDTH;
+            _c = LEVEL_HEIGHT;
+            _paused = pause;
             _drawer = g;
             _control = control;
-            _state = _drawer.Save();
             LoadLevel();
         }
         public void LoadLevel()
         {
-            arrTiles = new Tile[rows, columns];
+            arrTiles = new Tile[_r, _c];
             Random rand = new Random();
-            for (int x = 0; x < rows; x++)
+            for (int width = 0; width < _r; width++)
             {
-                for (int y = 0; y < columns; y++)
+                for (int height = 0; height < _c; height++)
                 {
-                    _tiles = new Tile(x, y);
-                    arrTiles[x, y] = _tiles;
-                    if (y > 0)
+                    int percent = rand.Next(1, 101);
+                    arrTiles[width, height] = new Tile(width, height);
+                    if (height > 0)
                     {
-                        _tiles.SaveNeighbour(Direction.North, arrTiles[x, (y - 1)]);
+                        arrTiles[width, height].SaveNeighbour(Direction.North, arrTiles[width, (height - 1)]);
                     }
-                    if (x > 0)
+                    if (width > 0)
                     {
-                        _tiles.SaveNeighbour(Direction.West, arrTiles[(x - 1), y]);
+                        arrTiles[width, height].SaveNeighbour(Direction.West, arrTiles[(width - 1), height]);
                     }
-                    if (rand.Next(1, 101) < pillarPercentage)
+
+                    if (percent <= WALL_PERCENT + PILLAR_PERCENT)
                     {
-                        arrTiles[x, y].SaveEntity(new Pillar(_drawer, arrTiles[x, y].LocationInLevel()));
+                        if (percent <= PILLAR_PERCENT)
+                        {
+                            if (_pillar == null)
+                            {
+                                _pillar = new Pillar(arrTiles[width, height], _drawer, arrTiles[width, height].LocationInLevel(), _paused);
+                            }
+                            arrTiles[width, height].SaveEntity(_pillar);
+                        }
+                        else if (percent > PILLAR_PERCENT)
+                        {
+                            if (_wall == null)
+                            {
+                                _wall = new Wall(arrTiles[width, height], _drawer, arrTiles[width, height].LocationInLevel(), _paused);
+                            }
+                            arrTiles[width, height].SaveEntity(_wall);
+                        }
                     }
-                    if (rand.Next(1, 101) < wallPercentage)
+                    if (width == 1 && height == 1)
                     {
-                        arrTiles[x, y].SaveEntity(new Wall(_drawer, arrTiles[x, y].LocationInLevel()));
+                        _player = new Player(arrTiles[width, height], _drawer, _control, arrTiles[width, height].LocationInLevel(), _paused);
+                        arrTiles[width, height].SaveEntity(_player);
                     }
-                    if (x == 0 || x == rows - 1 || y == 0 || y == columns - 1)
+                    if (width == _r - 2 && height == _c - 2)
                     {
-                        arrTiles[x, y].SaveEntity(new Wall(_drawer, arrTiles[x, y].LocationInLevel()));
-                    }
-                    if (x == 1 && y == 1)
-                    {
-                        arrTiles[x, y].SaveEntity(new Player(_drawer, _control, arrTiles[x, y].LocationInLevel()));
-                    }
-                    if (x == rows - 2 && y == columns - 2)
-                    {
-                        arrTiles[rows - 2, columns - 2].SaveEntity(new Enemy(_drawer, arrTiles[x, y].LocationInLevel()));
+                        _enemy = new Enemy(arrTiles[width, height], _drawer, arrTiles[width, height].LocationInLevel(), _paused);
+                        arrTiles[width, height].SaveEntity(_enemy);
                     }
                 }
             }
         }
-        public void ChangeSize(int x, int y)
+        public void ChangeSize(int width, int height)
         {
-            rows *= x;
-            columns *= y;
+            _r = width;
+            _c = height;
             LoadLevel();
-            DrawEntities();
         }
-        public void DrawEntities()
+        public void ChangePause(bool pause)
         {
-            for (int i = 0; i < rows; i++)
+            _paused = pause;
+        }
+        public void Reset()
+        {
+            for (int width = 0; width < _r; width++)
             {
-                for (int j = 0; j < columns; j++)
+                for (int height = 0; height < _c; height++)
                 {
-                    if (arrTiles[i, j].GetEntity() == null)
+                    arrTiles[width, height].SaveEntity(null);
+                }
+            }
+        }
+        public void DrawEntities(Bitmap background)
+        {
+            for (int width = 0; width < _r; width++)
+            {
+                for (int height = 0; height < _c; height++)
+                {
+                    if (arrTiles[width, height].GetEntity() == null)
                     {
+                        _drawer.DrawImage(background, arrTiles[width, height].LocationInLevel());
                         continue;
                     }
                     else
                     {
-                        arrTiles[i, j].GetEntity().Draw(arrTiles[i, j].LocationInLevel());
+                        arrTiles[width, height].GetEntity().Draw(arrTiles[width, height].LocationInLevel());
                     }
                 }
 
