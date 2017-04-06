@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Timers;
+using System.Windows.Forms;
 
 namespace Vang_de_Volger.Classes
 {
@@ -14,29 +14,33 @@ namespace Vang_de_Volger.Classes
         private bool IsTileSolid;
         private Tile EnemyTile;
         private Direction rngDirection;
-        private Timer movementTimer;
-        public Enemy(Tile tile, Graphics g, Point point, bool paused) : base(tile, point, g, paused)
+        private Level _level;
+        private Timer _timer;
+        private GameWindow _game;
+        private Tile thisTile; //Creates a local tile for each entity that takes the Tile from the contructor.
+        public Enemy(GameWindow game, Level level, Timer timer, Tile tile, Graphics g, Point point) : base(game, level, timer, tile, point, g, true)
         {
+            _game = game;
+            _level = level;
             EnemyTile = tile;
             IsTileSolid = true;
-            SetTimer();
+            thisTile = tile;
+            _timer = timer;
+            _timer.Enabled = true;
+            _timer.Tick += new EventHandler(OnTimedEvent);
         }
-        private void SetTimer()
+        private void OnTimedEvent(Object myObject, EventArgs myEventArgs)
         {
-            movementTimer = new Timer(500);
-            movementTimer.Enabled = true;
-            movementTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-
+            MoveRandomly(GetRandomNumber());
         }
-        private void OnTimedEvent(object source, ElapsedEventArgs e)
-        {
-            MoveRandomly();
-        }
-        public void MoveRandomly()
+        private int GetRandomNumber()
         {
             Random rnd = new Random();
             int count = rnd.Next(1, 5);
-            
+            return count;
+        }
+        public void MoveRandomly(int count)
+        {
             switch (count)
             {
                 case 1:
@@ -54,15 +58,22 @@ namespace Vang_de_Volger.Classes
             }
             Tile neighborTile = EnemyTile.GetNeighbour(rngDirection);
 
-            if (neighborTile.GetEntity() == null || neighborTile.GetEntity().ToString() == "Vang_de_Volger.Classes.Player")
+            if (neighborTile.GetEntity() == null || neighborTile.GetEntity() is Player)
             {
-                EnemyTile = neighborTile;
                 Move(rngDirection);
-            } else
-            {
-                count = rnd.Next(1, 5);
             }
 
+            if (Move(Direction.North) == false && Move(~Direction.North) == false && Move(Direction.West) == false && Move(~Direction.West) == false)
+            {
+                _timer.Stop();
+                if (MessageBox.Show("You win! Restart?", "Angry Chicken", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    _game.Restart();
+                } else
+                {
+                    Application.Exit();
+                }
+            }
         }
         public override Bitmap GetTexture
         {

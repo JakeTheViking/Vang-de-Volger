@@ -25,3 +25,4 @@ C:\Users\Jesper\Desktop\Project\Vang de Volger\obj\Debug\Vang de Volger.csprojRe
 C:\Users\Jesper\Desktop\Project\Vang de Volger\obj\Debug\Vang_de_Volger.Properties.Resources.resources
 C:\Users\Jesper\Desktop\Project\Vang de Volger\obj\Debug\Vang de Volger.csproj.GenerateResource.Cache
 C:\Users\Jesper\Desktop\Project\Vang de Volger\obj\Debug\Vang_de_Volger.Classes.GameWindow.resources
+C:\Users\Jesper\Desktop\Project\Vang de Volger\obj\Debug\Vang_de_Volger.Classes.Game.resources

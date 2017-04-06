@@ -10,85 +10,83 @@ namespace Vang_de_Volger.Classes
 {
     abstract class Entity
     {
-        public const int ASSET_SIZE = 32;
-        private Bitmap resized;
-        private Tile thisTile;
-        private Point currentLocation;
-        private Bitmap frame;
-        private Graphics frameGraphics;
-        private bool pPaused;
+        public const int ASSET_SIZE = 32; //Sets a constant size for all images to be 32 pixels.
+        private Graphics frameGraphics; //Taken over from the Graphics from GameWindow. Used to draw on the panel.
+        private Tile thisTile; //Creates a local tile for each entity that takes the Tile from the contructor.
+        private Tile targetTile;
+        private Level _level;
+        private GameWindow _game;
+        private Timer _timer;
+        private bool IsEnemy;
 
-        public Entity(Tile tile, Point point, Graphics g, bool paused)
+
+        public Entity(GameWindow game, Level level, Timer timer, Tile tile, Point point, Graphics g, bool enemy)
         {
-            pPaused = paused;
+            _timer = timer;
+            _game = game;
+            _level = level;
+            IsEnemy = enemy;
             frameGraphics = g;
-
-            resized = new Bitmap(GetTexture, new Size(ASSET_SIZE, ASSET_SIZE));
-
             thisTile = tile;
+
         }
+        /// <summary>
+        /// Abstract class to get the texture from each child. Returns a bitmap.
+        /// </summary>
         public abstract Bitmap GetTexture
         {
             get;
         }
+        /// <summary>
+        /// Abstract class to see if the child is solid. Used to check if the child is allowed to move.
+        /// </summary>
         public abstract bool Solid
         {
             get;
         }
         /// <summary>
-        /// Draw constructor used to draw texture on screen at certain position.
+        /// Draw method used to draw texture on screen at certain position foreach entity.
         /// </summary>
-        /// <param name="frameGraphics"></param>
-        /// <param name="xCord"></param>
-        /// <param name="yCord"></param>
+        /// <param name="_location"></param>
         public void Draw(Point _location)
         {
-            currentLocation = _location;
-            frameGraphics.DrawImage(resized, _location);
+            frameGraphics.DrawImage(GetTexture, _location);
         }
+        /// <summary>
+        /// Takes the direction and moves the Entity to the tile according to the direction.
+        /// Checks if the game is paused and if the Entity is able to move.
+        /// Asks if there is a neighbor tile next to the Entity in the current direction.
+        /// Asks if something is in that tile.
+        /// Depending what is in that tile, returns true (to not move) or false (to move).
+        /// Moving the Entity saves it in that tile and saves null in its place.
+        /// </summary>
+        /// <param name="pDirection"></param>
+        /// <returns></returns>
+        ///
         public bool Move(Direction pDirection)
         {
-            if (pPaused == false)
-            {
-                Tile neighborTile = thisTile.GetNeighbour(pDirection);
+            Tile neighborTile = thisTile.GetNeighbour(pDirection);
 
-                if (neighborTile == null)
-                {
-                    return false;
-                }
-                else if (neighborTile.GetEntity() == null)
+            if (neighborTile == null)
+            {
+                return false;
+            }
+            else if (neighborTile.GetEntity() == null)
+            {
+                neighborTile.SaveEntity(this);
+                thisTile.SaveEntity(null);
+                thisTile = neighborTile;
+                _level.DrawEntities();
+                return true;
+            }
+            else if (neighborTile.GetEntity() is Pillar && IsEnemy == false)
+            {
+                if (((Pillar)neighborTile.GetEntity()).Move(pDirection))
                 {
                     neighborTile.SaveEntity(this);
                     thisTile.SaveEntity(null);
+                    _level.DrawEntities();
                     thisTile = neighborTile;
-                    return true;
-                }
-                else if (neighborTile.GetEntity().ToString() == "Vang_de_Volger.Classes.Wall")
-                {
-                    return true;
-                }
-                else if (neighborTile.GetEntity().ToString() == "Vang_de_Volger.Classes.Pillar")
-                {
-                    //if (neighborTile.GetEntity().Move(pDirection) == true)
-                    //{
-                    //    return false;
-                    //}
-                    //else
-                    //{
-                    //    return true;
-                    //}
-                    return true;
-                }
-                else if (neighborTile.GetEntity().ToString() == "Vang_de_Volger.Classes.Player")
-                {
-                    MessageBox.Show("Gameover");
-                    Application.Exit();
-                    return true;
-                }
-                else if (neighborTile.GetEntity().ToString() == "Vang_de_Volger.Classes.Enemy")
-                {
-                    MessageBox.Show("Gameover");
-                    Application.Exit();
                     return true;
                 }
                 else
@@ -96,46 +94,29 @@ namespace Vang_de_Volger.Classes
                     return false;
                 }
             }
-            return false;
-            //else ()
-
-            //    if ()
-            //     is er een vakje = return false
-            //     zit er iets in het vakje = return true
-            //    buurvakje(this)
-            //    huidige(null) save entity
-            //    this tile = neighbur
-            //    true
-            //    recursive doos
+            else if (neighborTile.GetEntity() is Player && IsEnemy == true)
+            {
+                _timer.Stop();
+                thisTile.GetEntity().Move(Direction.None);
+                GetTexture.Dispose();
+                if (MessageBox.Show("You got hit by the enemy! Restart?", "Angry Chicken", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    _game.Restart();
+                }
+                else
+                {
+                    Application.Exit();
+                }
+                return true;
+            }
+            else if (neighborTile.GetEntity() is Enemy)
+            {
+                return false;
+            }
+            else
+            {
+                return false;
+            }
         }
-
-        //protected void Move(Direction direction, bool pause)
-        //{
-        //    if (pause == false)
-        //    {
-        //        switch (direction)
-        //        {
-        //            case Direction.North:
-        //                RedrawPast(Vang_de_Volger.Properties.Resources.Background32x32, currentLocation);
-        //                currentLocation.Y -= Entity.ASSET_SIZE;
-        //                Draw(currentLocation);
-        //                break;
-        //            case Direction.West:
-        //                RedrawPast(Vang_de_Volger.Properties.Resources.Background32x32, currentLocation);
-        //                currentLocation.X -= Entity.ASSET_SIZE;
-        //                Draw(currentLocation);
-        //                break;
-        //            case Direction.South:
-        //                RedrawPast(Vang_de_Volger.Properties.Resources.Background32x32, currentLocation);
-        //                currentLocation.Y += Entity.ASSET_SIZE;
-        //                Draw(currentLocation);
-        //                break;
-        //            case Direction.East:
-        //                RedrawPast(Vang_de_Volger.Properties.Resources.Background32x32, currentLocation);
-        //                currentLocation.X += Entity.ASSET_SIZE;
-        //                Draw(currentLocation);
-        //                break;
-        //        }
-        //    }
     }
 }

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Vang_de_Volger.Classes
 {
@@ -11,7 +12,7 @@ namespace Vang_de_Volger.Classes
     {
         private Bitmap texture = Vang_de_Volger.Properties.Resources.Pillar32x32;
         private bool IsTileSolid;
-        public Pillar(Tile tile, Graphics g, Point point, bool paused) : base(tile, point, g, paused)
+        public Pillar(GameWindow game, Level level, Timer timer, Tile tile, Graphics g, Point point) : base(game, level, timer, tile, point, g, false)
         {
             IsTileSolid = true;
         }

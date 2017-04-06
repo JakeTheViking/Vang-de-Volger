@@ -13,120 +13,52 @@ namespace Vang_de_Volger.Classes
 {
     public partial class GameWindow : Form
     {
-        public const int GAMEWINDOW_HEIGHT = Entity.ASSET_SIZE * Level.LEVEL_HEIGHT;
-        public const int GAMEWINDOW_WIDTH = Entity.ASSET_SIZE * Level.LEVEL_WIDTH;
-        public const int FORM_HEIGHT = 382;
+        public const int GAMEWINDOW_HEIGHT = Entity.ASSET_SIZE * Level.LEVEL_HEIGHT; //Constant value which is the value of the Panel's height. It is calculated by how many tiles in height (level_height) there are on load (by default 10) multiplied by the asset size.
+        public const int GAMEWINDOW_WIDTH = Entity.ASSET_SIZE * Level.LEVEL_WIDTH; //Constant value which is the value of the Panel's width. It is calculated by how many tiles in width (level_width) there are on load (by default 10) multiplied by the asset size.
+        public const int FORM_HEIGHT = 382; //Form height was a size that was best fit. This constant had to be scaled depending on size of the gameboard. Through testing this number gave the least white space around the edges. Menu bar is included here so that the menu bar is not overlapped by the panel.
         public const int FORM_WIDTH = 336;
-        private bool paused = false;
-        private Level _level;
-        private Graphics g;
-        private Bitmap background;
-        public GameWindow()
+        public bool paused = true; //A boolean that keeps the levels pause stored. This will be passed to the entities allowing them to move or not move. Also changed through the menu bar item "Pause".
+        private Level _level; //Creates one level class.
+        private Graphics g; //Graphics used to draw the images on the board.
+        public GameWindow(int width, int height, int formWidth, int formHeight, int speed)
         {
             InitializeComponent();
-            if (background == null)
-            {
-                background = Vang_de_Volger.Properties.Resources.Background32x32;
-            }
-            Start();
+            //On start set the background to a default grass texture if no other texture is given.
+            //Run a start method which instantiates the level
+            gameTimer.Interval = speed;
+            this.Width = formWidth;
+            this.Height = formHeight;
+            Start(width, height);
         }
-        private void DrawingArea_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        /// <summary>
+        /// This is a timer that on every tick draws the entities on their tiles.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void gameTimerTick(object sender, EventArgs e)
         {
-            _level.DrawEntities(background);
         }
 
-        private void Start()
+        /// <summary>
+        /// This method is used at the loading and start of the game. It sets the size of the panel to the largest it will be then creates the Graphics according to its max size.
+        /// Then it creates the level and performs a click of Medium size in the toolbar on its own.
+        /// The panel needs to be this big or else the Graphics will be cut off when the user changes the size later to a bigger size.
+        /// </summary>
+        private void Start(int width, int height)
         {
             DrawingArea.Size = new Size(GAMEWINDOW_WIDTH * 3, GAMEWINDOW_HEIGHT * 2);
             g = DrawingArea.CreateGraphics();
 
-            _level = new Level(g, this.TopLevelControl, paused);
-
-            MediumMenuItem.PerformClick();
+            _level = new Level(width, height, this, this.gameTimer, g, this.TopLevelControl);
         }
-        private void Restart()
-        {
-            if(SmallMenuItem.Checked == true)
-            {
-                ChangeLevel(1, 1);
-            } else if(MediumMenuItem.Checked == true)
-            {
-                ChangeLevel(2, 2);
-            } else if (LargeMenuItem.Checked == true)
-            {
-                ChangeLevel(3, 2);
-            }
-        }
-        private void Pause()
-        {
-
-        }
-        private void GameWindow_Shown(object sender, EventArgs e)
-        {
-            _level.DrawEntities(background);
-        }
-        private void SmallMenuItem_Click(object sender, EventArgs e)
-        {
-            SmallMenuItem.Checked = true;
-            MediumMenuItem.Checked = false;
-            LargeMenuItem.Checked = false;
-            DrawingArea.Size = new Size(GAMEWINDOW_WIDTH, GAMEWINDOW_HEIGHT);
-            this.Size = new Size(FORM_WIDTH, FORM_HEIGHT);
-            ChangeLevel(1, 1);
-        }
-        private void MediumMenuItem_Click(object sender, EventArgs e)
-        {
-            SmallMenuItem.Checked = false;
-            MediumMenuItem.Checked = true;
-            LargeMenuItem.Checked = false;
-            DrawingArea.Size = new Size(GAMEWINDOW_WIDTH * 2, GAMEWINDOW_HEIGHT * 2);
-            this.Size = new Size(FORM_WIDTH * 2, FORM_HEIGHT * 2);
-            ChangeLevel(2, 2);
-        }
-        private void LargeMenuItem_Click(object sender, EventArgs e)
-        {
-            SmallMenuItem.Checked = false;
-            MediumMenuItem.Checked = false;
-            LargeMenuItem.Checked = true;
-            DrawingArea.Size = new Size(GAMEWINDOW_WIDTH * 3, GAMEWINDOW_HEIGHT * 2);
-            this.Size = new Size(FORM_WIDTH * 3, FORM_HEIGHT * 2);
-            ChangeLevel(3, 2);
-        }
-        private void ChangeLevel(int width, int height)
-        {
-            int rows = width * Level.LEVEL_WIDTH;
-            int columns = height * Level.LEVEL_HEIGHT;
-            _level.Reset();
-            _level.ChangeSize(rows, columns);
-            _level.DrawEntities(background);
-        }
-
-        private void PauseMenuItem_Click(object sender, EventArgs e)
-        {
-            if (paused == false)
-            {
-                background = Vang_de_Volger.Properties.Resources.Paused;
-                _level.ChangePause(paused);
-                _level.DrawEntities(background);
-                paused = true;
-            }
-            else
-            {
-                background = Vang_de_Volger.Properties.Resources.Background32x32;
-                _level.ChangePause(paused);
-                paused = false;
-            }
-        }
-
-        private void RestartMenuItem_Click(object sender, EventArgs e)
-        {
-            Restart();
-        }
-
+        
+        /// <summary>
+        /// Takes a bitmap and an alpha value.
+        /// Creates a second bitmap with transparency using RGB.
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="Alpha"></param>
+        /// <returns></returns>
         private static Bitmap TransparentImage(Image image, Byte Alpha)
         {
             Bitmap original = new Bitmap(image);
@@ -147,16 +79,47 @@ namespace Vang_de_Volger.Classes
 
             return transparentImage;
         }
+        /// <summary>
+        /// Fun little joke that if the user clicks on the HelpMenuItem it googles something funny.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
-        private void HelpMenuItem_Click(object sender, EventArgs e)
+        private void GameWindow_Shown(object sender, EventArgs e)
         {
-            Process.Start("http://lmgtfy.com/?q=I+don%27t+know+ask+Vincent+-+Tim");
+            
+            _level.DrawEntities();
         }
 
-        private void ControlsMenuItem_Click(object sender, EventArgs e)
+        private void GameWindow_Load(object sender, EventArgs e)
         {
-            paused = true;
+            DoubleBuffered = true;
+            SetStyle(
+                ControlStyles.AllPaintingInWmPaint |
+                ControlStyles.OptimizedDoubleBuffer |
+                ControlStyles.UserPaint,
+                true);
         }
-
+        public void Restart()
+        {
+            this.Close();
+        }
+        private void RestartMenuItem_Click(object sender, EventArgs e)
+        {
+            Restart();
+        }
+        private void PauseMenuItem_Click(object sender, EventArgs e)
+        {
+            if (paused == true)
+            {
+                gameTimer.Stop();
+                paused = false;
+            }
+            else
+            {
+                gameTimer.Start();
+                paused = true;
+            }
+        }
     }
 }

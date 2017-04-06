@@ -14,12 +14,18 @@ namespace Vang_de_Volger.Classes
         private Bitmap texture = Vang_de_Volger.Properties.Resources.Player32x32;
         private bool IsTileSolid;
         private Direction currentDirection;
-
-        public Player(Tile tile, Graphics g, Control control, Point point, bool pause) : base (tile, point, g, pause)
+        private Graphics _drawer;
+        private Level _level;
+        private GameWindow _game;
+        public Player(GameWindow game, Level level, Timer timer, Tile tile, Graphics g, Control control, Point point) : base (game, level, timer, tile, point, g, false)
         {
+            _level = level;
             IsTileSolid = true;
+            _drawer = g;
+            _game = game;
             control.KeyUp += this.UpdateOn_KeyUp;
             control.KeyDown += this.Direction_KeyDown;
+
         }
         /// <summary>
         /// Override of GetTexture method
@@ -47,11 +53,15 @@ namespace Vang_de_Volger.Classes
                 case (Keys.A):
                 case (Keys.S):
                 case (Keys.D):
-                    Move(currentDirection);
+                    if(_game.paused)
+                    {
+                        Move(currentDirection);
+                        _level.DrawEntities();
+                    }
                     break;
             }
         }
-
+        
         public void Direction_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             switch (e.KeyCode)

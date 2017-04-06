@@ -83,7 +83,16 @@
     <Compile Include="Classes\TextureID.cs" />
     <Compile Include="Classes\Tile.cs" />
     <Compile Include="Classes\Wall.cs" />
+    <Compile Include="Classes\Game.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Game.Designer.cs">
+      <DependentUpon>Game.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Classes\Game.resx">
+      <DependentUpon>Game.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Classes\GameWindow.resx">
       <DependentUpon>GameWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -173,6 +182,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="barn-16 %281%29.ico" />
+    <None Include="Resources\logo.png" />
     <None Include="Resources\pause.jpg" />
     <None Include="Resources\Pause32x32.png" />
   </ItemGroup>
